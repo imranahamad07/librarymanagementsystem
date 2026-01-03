@@ -1,9 +1,12 @@
 import express from 'express'
 const app = express();
-import dotenv from 'dotenv'
-import chalk from 'chalk';
+import env from 'dotenv'
+import chalk from 'chalk'
+import cors from 'cors'
 
-dotenv.config();
+env.config();
+
+app.use(cors());
 
 import connectDb from './config/db.js'
 connectDb();
@@ -23,7 +26,6 @@ app.get('/api/health', (req,res) => {
 		msg:"server is running okk",
 		success:true,
 	})
-
 })
 
 app.listen(process.env.PORT || 5000 , ()=>{
